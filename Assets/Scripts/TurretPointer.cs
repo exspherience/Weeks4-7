@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TurretPointer : MonoBehaviour
 {
@@ -12,5 +13,8 @@ public class TurretPointer : MonoBehaviour
     void Update()
     {
         //Make a new script that points the barrel towards the mouse.
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector2 direction = mousePos - (Vector2)transform.position;
+        transform.up = direction;
     }
 }
