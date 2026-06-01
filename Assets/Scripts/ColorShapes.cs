@@ -47,6 +47,5 @@ public class ColorShapes : MonoBehaviour
                 index = 0;
             }
         }
-
     }
 }
