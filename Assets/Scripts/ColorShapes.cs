@@ -41,7 +41,8 @@ public class ColorShapes : MonoBehaviour
         {
             index++;
 
-            // reset index 
+            // reset index after reaching limit
+            // loops back to first shape in List
             if(index >= shapes.Count)
             {
                 index = 0;
