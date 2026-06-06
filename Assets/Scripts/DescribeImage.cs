@@ -9,6 +9,7 @@ public class DescribeImage : MonoBehaviour
     public bool isBurger;
     public bool isPizza;
     public bool isIceCream;
+    public bool isSecret;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +34,10 @@ public class DescribeImage : MonoBehaviour
             else if (isIceCream)
             {
                 imageDescription.text = "This is an ice cream cone.";
+            }
+            else if (isSecret)
+            {
+                imageDescription.text = "Whose eyes are those eyes?";
             }
         }
     }
