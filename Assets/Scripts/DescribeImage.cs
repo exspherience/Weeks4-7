@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class DescribeImage : MonoBehaviour
 {
     public TextMeshProUGUI imageDescription;
-    float distanceThreshold = 1f;
+    public SpriteRenderer foodRenderer;
     public bool isBurger;
     public bool isPizza;
     public bool isIceCream;
@@ -21,7 +21,7 @@ public class DescribeImage : MonoBehaviour
     void Update()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        if (Vector2.Distance(transform.position, mousePos) < distanceThreshold)
+        if (foodRenderer.bounds.Contains(mousePos))
         {
             if (isBurger)
             {

@@ -499,6 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DescribeImage
   imageDescription: {fileID: 714440533}
+  foodRenderer: {fileID: 1032728187}
   isBurger: 0
   isPizza: 1
   isIceCream: 0
@@ -682,6 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DescribeImage
   imageDescription: {fileID: 714440533}
+  foodRenderer: {fileID: 1411692906}
   isBurger: 1
   isPizza: 0
   isIceCream: 0
@@ -717,6 +719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DescribeImage
   imageDescription: {fileID: 714440533}
+  foodRenderer: {fileID: 1489000369}
   isBurger: 0
   isPizza: 0
   isIceCream: 0
@@ -1008,6 +1011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DescribeImage
   imageDescription: {fileID: 714440533}
+  foodRenderer: {fileID: 1936169531}
   isBurger: 0
   isPizza: 0
   isIceCream: 1
