@@ -9,13 +9,14 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab;
     public Vector2 spawnLocation;
     GameObject spawnedEnemy;
+    public int desiredEnemyAmount = 4;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // generate 5 enemies, each in a random location
         // adds them to a list
-        for (int j = 0; j <= 4; j++)
+        for (int j = 0; j <= desiredEnemyAmount; j++)
         {
             spawnedEnemy = Instantiate(enemyPrefab, randomLocation(), Quaternion.identity);
             enemies.Add(spawnedEnemy);
