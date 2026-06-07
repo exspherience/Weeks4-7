@@ -7,7 +7,6 @@ public class EnemySpawner : MonoBehaviour
     public TextMeshProUGUI victoryMessage;
     public List<GameObject> enemies;
     public GameObject enemyPrefab;
-    public Vector2 spawnLocation;
     GameObject spawnedEnemy;
     public int desiredEnemyAmount = 4;
 
@@ -50,6 +49,6 @@ public class EnemySpawner : MonoBehaviour
     // returns spawnLocation with random values
     Vector2 randomLocation()
     {
-        return spawnLocation = new Vector2(Random.Range(-5, 5), Random.Range(-3, 3)); 
+        return new Vector2(Random.Range(-5, 5), Random.Range(-3, 3)); 
     }
 }
