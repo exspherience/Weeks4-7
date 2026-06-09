@@ -527,7 +527,7 @@ MonoBehaviour:
   victoryMessage: {fileID: 959954381}
   enemies: []
   enemyPrefab: {fileID: 7118028531595715520, guid: 771974311ae65224bb0d8121b3a646c0, type: 3}
-  spawnLocation: {x: 0, y: 0}
+  desiredEnemyAmount: 4
 --- !u!4 &1614626745
 Transform:
   m_ObjectHideFlags: 0
