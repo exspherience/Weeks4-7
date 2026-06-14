@@ -3,6 +3,9 @@ using UnityEngine;
 public class Clock : MonoBehaviour
 {
     public float speed;
+    public bool isHour;
+    public AudioSource clockChime;
+    public SpriteRenderer cuckoo;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,5 +25,36 @@ public class Clock : MonoBehaviour
         // do not trust the inspector!!
         currentRotation.z += speed * Time.deltaTime;
         transform.eulerAngles = currentRotation;
+
+        // checks if z angle of rotation divisible by 30
+        // cast to integer so decimals are ignored
+        // checks if object has isHour set to true
+        // checks if chime isn't already playing to prevent overlap
+        if ((int)transform.eulerAngles.z % 30 == 0 && isHour && !clockChime.isPlaying)
+        {
+            // plays audio and display the bird
+            playChime();
+            showBird();
+        }
+
+        if(!clockChime.isPlaying)
+        {
+            hideBird();
+        }
+    }
+
+    void playChime()
+    {
+        clockChime.Play();//OneShot(clockChime.clip);
+    }
+
+    void showBird()
+    {
+        cuckoo.enabled = true;
+    }
+
+    void hideBird()
+    {
+        cuckoo.enabled = false;
     }
 }
