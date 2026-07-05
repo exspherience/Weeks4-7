@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Digital Clock font by PixelMoondust: https://www.dafont.com/digital-clock-2.font
 public class TimeMachineController : MonoBehaviour
 {
     public TextMeshProUGUI yearText;
@@ -21,6 +22,6 @@ public class TimeMachineController : MonoBehaviour
 
     void setYearText()
     {
-        yearText.text = yearSlider.value.ToString();
+        yearText.text = "TARGET: " + yearSlider.value;
     }
 }
