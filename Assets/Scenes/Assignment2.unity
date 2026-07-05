@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 484368089}
   - component: {fileID: 484368090}
   m_Layer: 0
-  m_Name: Hexagon Point Top
+  m_Name: TimeMachineCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,7 +485,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.001, y: 0.20699996, z: 0}
-  m_LocalScale: {x: 0.5403, y: 0.4704, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 738487195}
@@ -581,6 +581,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TimeMachineController
   yearText: {fileID: 279850263}
   yearSlider: {fileID: 364975940}
+  timeMachineCore: {fileID: 484368088}
+  speed: 0
+  currentYear: 2010
 --- !u!212 &738487194
 SpriteRenderer:
   serializedVersion: 2
@@ -950,7 +953,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1205606047}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 738487193}
+        m_TargetAssemblyTypeName: TimeMachineController, Assembly-CSharp
+        m_MethodName: setCurrentYear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1205606047
 MonoBehaviour:
   m_ObjectHideFlags: 0
