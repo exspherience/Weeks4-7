@@ -417,7 +417,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.04, y: 2.01, z: 0}
-  m_LocalScale: {x: 3, y: 6, z: 0}
+  m_LocalScale: {x: 0, y: 6, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -675,11 +675,11 @@ MonoBehaviour:
   timeMachineCore: {fileID: 484368088}
   lightBeam: {fileID: 280764189}
   timeTravelStart: 0
-  duration: 10
+  duration: 3
   speed: 0
   currentYear: 2010
-  startValue: {x: 0, y: 0, z: 0}
-  endValue: {x: 10, y: 0, z: 0}
+  startValue: {x: 0, y: 6, z: 0}
+  endValue: {x: 5, y: 6, z: 0}
 --- !u!212 &738487194
 SpriteRenderer:
   serializedVersion: 2
