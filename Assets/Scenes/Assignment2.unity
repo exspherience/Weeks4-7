@@ -1069,7 +1069,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 738487193}
         m_TargetAssemblyTypeName: TimeMachineController, Assembly-CSharp
-        m_MethodName: setCurrentYear
+        m_MethodName: SetCurrentYear
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1081,7 +1081,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 738487193}
         m_TargetAssemblyTypeName: TimeMachineController, Assembly-CSharp
-        m_MethodName: startTimeTravel
+        m_MethodName: StartTimeTravel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1093,7 +1093,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 738487196}
         m_TargetAssemblyTypeName: SparkSpawner, Assembly-CSharp
-        m_MethodName: spawnSparks
+        m_MethodName: SpawnSparks
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

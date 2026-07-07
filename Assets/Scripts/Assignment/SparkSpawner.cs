@@ -20,24 +20,24 @@ public class SparkSpawner : MonoBehaviour
     }
 
     // spawns amount of sparks specified at set location
-    public void spawnSparks()
+    public void SpawnSparks()
     {
         for (int i = 0; i <= sparkAmount; i++)
         {
-            setSpawnLocation();
+            SetSpawnLocation();
             GameObject spawnedObject = Instantiate(sparkPrefab, spawnLocation, Quaternion.identity);
-            destroySparks(spawnedObject);
+            DestroySparks(spawnedObject);
         }
     }
 
     // destroys object that was 
-    void destroySparks(GameObject objectToDestroy)
+    void DestroySparks(GameObject objectToDestroy)
     {
         Destroy(objectToDestroy, sparkDuration);
     }
 
     // spawns sparks in a random location near the time machine
-    void setSpawnLocation()
+    void SetSpawnLocation()
     {
         spawnLocation = new Vector3(Random.Range(-2f, 2f), Random.Range(-1f, 5f), 0);
     }
