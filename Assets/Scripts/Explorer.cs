@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,16 +6,25 @@ public class Explorer : MonoBehaviour
 {
     public float health;
     public float speed;
-
+    public float freezeTimer;
+    public float unfreezeTimer;
+    public float duration;
+    public SpriteRenderer explorerRenderer;
+    bool frozen;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        explorerRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (frozen)
+        {
+            freezeTimer += Time.deltaTime;
+            Unfreeze();
+        }
         Vector3 directionToMove = Vector3.zero;
 
         //Or use constructor:
@@ -54,4 +64,29 @@ public class Explorer : MonoBehaviour
     {
         speed += 1.5f;
     }
+
+    public void Freeze()
+    {
+        if (freezeTimer < duration)
+        {
+            explorerRenderer.color = Color.cyan;
+            speed = 0f;
+            frozen = true;
+        }
+    }
+
+    public void Unfreeze()
+    {
+        if (freezeTimer >= duration)
+        {
+            explorerRenderer.color = Color.white;
+            frozen = false;
+            speed = 2f;
+        }
+    }
+    public void ResetTimer()
+    {
+        freezeTimer = 0f;
+    }
 }
+

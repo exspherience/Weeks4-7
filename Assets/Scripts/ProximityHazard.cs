@@ -6,6 +6,7 @@ public class ProximityHazard : MonoBehaviour
     public SpriteRenderer playerRenderer;
     public Explorer playerExplorer;
 
+    // create an event
     public UnityEvent onTrapEntered;
     public UnityEvent onTrapExited;
 
@@ -19,7 +20,8 @@ public class ProximityHazard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerRenderer.bounds.Contains(transform.position) && !isCurrentlyOnTrap)
+        if (playerRenderer.bounds.Contains(transform.position) 
+            && !isCurrentlyOnTrap)
         {
             // everything mapped to event happens when invoke called
             onTrapEntered.Invoke();
