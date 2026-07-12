@@ -679,8 +679,10 @@ MonoBehaviour:
   duration: 3
   speed: 0
   currentYear: 2010
-  startValue: {x: 0, y: 6, z: 0}
-  endValue: {x: 5, y: 6, z: 0}
+  beamStartValue: {x: 0, y: 6, z: 0}
+  beamEndValue: {x: 4, y: 6, z: 0}
+  machineStartValue: {x: 3.7341, y: 3.7341, z: 0}
+  machineEndValue: {x: 0, y: 0, z: 0}
 --- !u!212 &738487194
 SpriteRenderer:
   serializedVersion: 2

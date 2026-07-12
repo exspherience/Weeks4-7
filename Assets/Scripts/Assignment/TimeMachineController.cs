@@ -7,22 +7,33 @@ public class TimeMachineController : MonoBehaviour
 {
     public TextMeshProUGUI yearText;
     public Slider yearSlider;
+    public Button timeTravelButton;
     public GameObject timeMachineCore;
     public GameObject lightBeam;
 
     public bool timeTravelStart;
-    public float duration = 3f;
+    public float beamDuration = 3f;
+    public float machineDuration = 6f;
     public float speed;
     public float currentYear = 2010;
+
+    public Vector3 beamStartValue;
+    public Vector3 beamEndValue;
     float beamProgress = 0f;
 
-    public Vector3 startValue;
-    public Vector3 endValue;
+    public Vector3 machineStartValue;
+    public Vector3 machineEndValue;
+    float machineProgress = 0f;
+
+    public float cooldownTimer = 0f;
+    public float cooldownDuration = 2f;
+    public bool machineVisible = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        // ensure machineEndValue is 0 at start
+        machineEndValue = Vector3.zero; 
     }
 
     // Update is called once per frame
@@ -32,11 +43,22 @@ public class TimeMachineController : MonoBehaviour
         speed = currentYear - yearSlider.value;
         SetYearText();
         RotateCore();
+        ToggleControls();
 
         if(timeTravelStart)
         {
-            beamProgress += Time.deltaTime;
-            AnimateBeam();
+            TimeTravel();
+        }
+
+        // waits for cooldown to end before time machine appears again
+        if(!machineVisible)
+        {
+            cooldownTimer += Time.deltaTime;
+            if(cooldownTimer >= cooldownDuration)
+            {
+                StartTimeTravel();
+                cooldownTimer = 0f;
+            }
         }
     }
 
@@ -66,32 +88,93 @@ public class TimeMachineController : MonoBehaviour
         timeTravelStart = true;
     }
 
-    void AnimateBeam()
+    public void TimeTravel()
     {
-        // Lerp the beam scale so it grows
-        lightBeam.transform.localScale = Vector3.Lerp(startValue, endValue, beamProgress/duration);
+        // start beam and machine timers
+        // begin animations
+        beamProgress += Time.deltaTime;
+        machineProgress += Time.deltaTime;
+        AnimateBeam();
+        AnimateTimeMachine();
+    }
 
-        // if the beam has grown to full size, swap the start and end so it shrinks down
-        if (beamProgress >= duration && lightBeam.transform.localScale.x != 0f)
+    // toggle interactivity of controls depending on animation state
+    void ToggleControls()
+    {
+        // ensure time machine controls on if nothing is animating
+        if (machineVisible && !timeTravelStart)
         {
-            SetBeamSize(startValue, endValue);
-            beamProgress = 0f;
+            timeTravelButton.interactable = true;
+            yearSlider.interactable = true;
+
+            // disable button if slider is on current year
+            if (yearSlider.value == currentYear)
+            {
+                timeTravelButton.interactable = false;
+            }
         }
-        // if the beam hits width hits zero again, swap start and end so it can grow next time the button is pressed
-        // return timeTravelStart to false so that the animation can play again next button press
-        if(lightBeam.transform.localScale.x == 0f && beamProgress >= duration)
+        // disable button and slider while animations are playing
+        else
         {
-            SetBeamSize(startValue, endValue);
-            beamProgress = 0f;
-            timeTravelStart = false;
+            timeTravelButton.interactable = false;
+            yearSlider.interactable = false;
         }
     }
 
-    // swap the start and end sizes of the beam when called
-    void SetBeamSize(Vector3 startSize, Vector3 endSize)
+    /////////////////////////
+    /// Animation Methods ///
+    /////////////////////////
+    void AnimateBeam()
     {
-        Vector3 tempValue = endValue;
-        endValue = startValue;
-        startValue = tempValue;
+        // Lerp the beam scale so it grows
+        lightBeam.transform.localScale = Vector3.Lerp(beamStartValue, beamEndValue, beamProgress/beamDuration);
+
+        // if the beam has grown to full size, swap the start and end so it shrinks down
+        if (beamProgress >= beamDuration)
+        {
+            SwapBeamValues();
+            beamProgress = 0f;
+            // marks timeTravelState as ended if beam size is 0
+            if (lightBeam.transform.localScale.x == 0f)
+            {
+                timeTravelStart = false;
+            }
+        }
+    }
+
+    void AnimateTimeMachine()
+    {
+        // shrinks or grows time machine object
+        transform.localScale = Vector3.Lerp(machineStartValue, machineEndValue, machineProgress / machineDuration);
+
+        // if machineProgress has exceeded duration, swap start and end values so lerp will do opposite next time called
+        // reset progress timer
+        if (machineProgress > machineDuration)
+        {
+            SwapMachineValues();
+            machineProgress = 0f;
+        }
+        // mark machine as not visible when scale is at 0 so cool down can begin in Update
+        if (transform.localScale.x == 0f)
+        {
+            machineVisible = false;
+        }
+        else machineVisible = true; 
+    }
+
+    // swap the start and end sizes of the beam when called
+    void SwapBeamValues()
+    {
+        Vector3 tempBeamValue = beamEndValue;
+        beamEndValue = beamStartValue;
+        beamStartValue = tempBeamValue;
+    }
+
+    // swap machine start and end values 
+    void SwapMachineValues()
+    {
+        Vector3 tempValue = machineEndValue;
+        machineEndValue = machineStartValue;
+        machineStartValue = tempValue;
     }
 }
