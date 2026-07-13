@@ -22,10 +22,12 @@ public class SparkSpawner : MonoBehaviour
     // spawns amount of sparks specified at set location
     public void SpawnSparks()
     {
+        Vector3 sparkRotation = new Vector3(0, 0, 90);
         for (int i = 0; i <= sparkAmount; i++)
         {
             SetSpawnLocation();
             GameObject spawnedObject = Instantiate(sparkPrefab, spawnLocation, Quaternion.identity);
+            spawnedObject.transform.eulerAngles = sparkRotation;
             DestroySparks(spawnedObject);
         }
     }
@@ -39,6 +41,6 @@ public class SparkSpawner : MonoBehaviour
     // spawns sparks in a random location near the time machine
     void SetSpawnLocation()
     {
-        spawnLocation = new Vector3(Random.Range(-2f, 2f), Random.Range(-1f, 5f), 0);
+        spawnLocation = new Vector3(Random.Range(-3f, 3f), Random.Range(-2f, 4f), 0);
     }
 }

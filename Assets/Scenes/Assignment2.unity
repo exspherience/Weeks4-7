@@ -398,7 +398,7 @@ SpriteRenderer:
   m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.68867916, g: 1, b: 0.93338794, a: 1}
+  m_Color: {r: 0.7010477, g: 1, b: 0.62578607, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -575,8 +575,8 @@ Transform:
   m_GameObject: {fileID: 484368088}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.001, y: 0.20699996, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0.26, y: 4.5, z: 0}
+  m_LocalScale: {x: 0.8223038, y: 0.8223038, z: 1.6446075}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 738487195}
@@ -630,7 +630,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 6
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
+  m_Sprite: {fileID: 7423027989442695573, guid: bba6cc6898d1ffb4399f776a7e897cd9, type: 3}
   m_Color: {r: 1, g: 0.35534585, b: 0.53766924, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -765,6 +765,7 @@ MonoBehaviour:
   yearText: {fileID: 279850263}
   yearSlider: {fileID: 364975940}
   timeTravelButton: {fileID: 1205606046}
+  skyBg: {fileID: 1255714292}
   timeMachineCore: {fileID: 484368088}
   lightBeam: {fileID: 280764189}
   timeTravelStart: 0
@@ -774,11 +775,18 @@ MonoBehaviour:
   currentYear: 2010
   beamStartValue: {x: 0, y: 9, z: 0}
   beamEndValue: {x: 7, y: 9, z: 0}
-  machineStartValue: {x: 5.671619, y: 5.671619, z: 0}
+  machineStartValue: {x: 0.3658619, y: 0.3658619, z: 0}
   machineEndValue: {x: 0, y: 0, z: 0}
   cooldownTimer: 0
   cooldownDuration: 2
   machineVisible: 1
+  pastColor: {r: 0.5450981, g: 0.2705882, b: 0.07450981, a: 1}
+  pastSkyColor: {r: 0.9607844, g: 0.9607844, b: 0.8627452, a: 1}
+  defaultColor: {r: 0.5294118, g: 0.8078432, b: 0.9803922, a: 1}
+  defaultSkyColor: {r: 0.5294118, g: 0.8078432, b: 0.9803922, a: 1}
+  futureColor: {r: 0.1960784, g: 0.8039216, b: 0.1960784, a: 1}
+  futureSkyColor: {r: 0.6901961, g: 0.7686275, b: 0.8705883, a: 1}
+  easterEggColor: {r: 0.5450981, g: 0, b: 0, a: 1}
 --- !u!212 &738487194
 SpriteRenderer:
   serializedVersion: 2
@@ -828,12 +836,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 81b0a77f5aeb9394790fdb1cc6658d89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -847,8 +855,8 @@ Transform:
   m_GameObject: {fileID: 738487192}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.63, z: 0}
-  m_LocalScale: {x: 5.6716194, y: 5.6716194, z: 5.6716194}
+  m_LocalPosition: {x: 0, y: 0.53, z: 0}
+  m_LocalScale: {x: 0.36586192, y: 0.36586192, z: 0.36586192}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 484368089}

@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // Digital Clock font by PixelMoondust: https://www.dafont.com/digital-clock-2.font
+// Cog by Lorc: https://game-icons.net/1x1/lorc/cog.html
+
 public class TimeMachineController : MonoBehaviour
 {
     // variables for objects
