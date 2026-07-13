@@ -1,3 +1,4 @@
+using System.Net.Http;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,35 +6,50 @@ using UnityEngine.UI;
 // Digital Clock font by PixelMoondust: https://www.dafont.com/digital-clock-2.font
 public class TimeMachineController : MonoBehaviour
 {
+    // variables for objects
     public TextMeshProUGUI yearText;
     public Slider yearSlider;
     public Button timeTravelButton;
+    public GameObject skyBg;
     public GameObject timeMachineCore;
     public GameObject lightBeam;
 
+    // time travel variables
     public bool timeTravelStart;
     public float beamDuration = 3f;
     public float machineDuration = 6f;
     public float speed;
     public float currentYear = 2010;
 
+    // time beam lerp variables
     public Vector3 beamStartValue;
     public Vector3 beamEndValue;
     float beamProgress = 0f;
 
+    // time machine lerp variables
     public Vector3 machineStartValue;
     public Vector3 machineEndValue;
     float machineProgress = 0f;
 
+    // Variables needed to have the time machine reappear after time travel
     public float cooldownTimer = 0f;
     public float cooldownDuration = 2f;
     public bool machineVisible = true;
+
+    // Color variables 
+    public Color pastColor = Color.saddleBrown;
+    public Color pastSkyColor = Color.beige;
+    public Color defaultColor = Color.deepPink;
+    public Color defaultSkyColor = Color.lightSkyBlue;
+    public Color futureColor = Color.limeGreen;
+    public Color futureSkyColor = Color.lightSteelBlue;
+    public Color easterEggColor = Color.darkRed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // ensure machineEndValue is 0 at start
-        machineEndValue = Vector3.zero; 
+        machineEndValue = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -44,7 +60,9 @@ public class TimeMachineController : MonoBehaviour
         SetYearText();
         RotateCore();
         ToggleControls();
+        SetTimeMachineColor();
 
+        // begin time travel
         if(timeTravelStart)
         {
             TimeTravel();
@@ -54,7 +72,7 @@ public class TimeMachineController : MonoBehaviour
         if(!machineVisible)
         {
             cooldownTimer += Time.deltaTime;
-            if(cooldownTimer >= cooldownDuration)
+            if(cooldownTimer > cooldownDuration)
             {
                 StartTimeTravel();
                 cooldownTimer = 0f;
@@ -83,11 +101,13 @@ public class TimeMachineController : MonoBehaviour
         currentYear = yearSlider.value;
     }
 
+    // toggles time travel start variable
     public void StartTimeTravel()
     {
         timeTravelStart = true;
     }
 
+    // starts timers and animates machine
     public void TimeTravel()
     {
         // start beam and machine timers
@@ -121,6 +141,44 @@ public class TimeMachineController : MonoBehaviour
         }
     }
 
+    // changes color of machine core and sky based on slider value
+    void SetTimeMachineColor()
+    {
+        SpriteRenderer coreRenderer = timeMachineCore.GetComponent<SpriteRenderer>();
+        SpriteRenderer skyRenderer = skyBg.GetComponent<SpriteRenderer>();
+
+        // changes sky during time travel animation
+        if(timeTravelStart)
+        {
+            skyRenderer.color = Color.midnightBlue;
+        }
+        else
+        {
+            // checks if slide value is between certain dates when not time traveling
+            if (yearSlider.value == 2036) // fun reference :P
+            {
+                coreRenderer.color = easterEggColor;
+                skyRenderer.color = easterEggColor;
+            }
+            else if (yearSlider.value <= 1970 && yearSlider.value >= 1950)
+            {
+                coreRenderer.color = pastColor;
+                skyRenderer.color = pastSkyColor;
+            }
+            else if (yearSlider.value > 2026 && yearSlider.value <= 2050)
+            {
+                coreRenderer.color = futureColor;
+                skyRenderer.color = futureSkyColor;
+            }
+            else // default colors
+            {
+                coreRenderer.color = Color.deepPink;
+                skyRenderer.color = defaultSkyColor;
+            }
+        }
+    }
+
+
     /////////////////////////
     /// Animation Methods ///
     /////////////////////////
@@ -153,13 +211,9 @@ public class TimeMachineController : MonoBehaviour
         {
             SwapMachineValues();
             machineProgress = 0f;
+            // toggles machine visibile variable so that grow/shrink can be played if cooldown over
+            machineVisible = !machineVisible;
         }
-        // mark machine as not visible when scale is at 0 so cool down can begin in Update
-        if (transform.localScale.x == 0f)
-        {
-            machineVisible = false;
-        }
-        else machineVisible = true; 
     }
 
     // swap the start and end sizes of the beam when called
